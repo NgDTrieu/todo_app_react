@@ -18,7 +18,8 @@ class Add extends React.Component {
         }
         let newAct = {
             id: Math.floor(Math.random() * 10000),
-            title: this.state.newAct
+            title: this.state.newAct,
+            onEdit: false
         }
         this.props.addNewAct(newAct)
         this.setState({
