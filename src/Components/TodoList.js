@@ -1,5 +1,6 @@
 import React from "react";
 import Add from "./Add.js"
+import logo from "../Images/logo.svg";
 
 class TodoList extends React.Component {
     state = {
@@ -64,6 +65,8 @@ class TodoList extends React.Component {
     render() {
         return (
             <>
+                <img src={logo} className="App-logo" alt="logo" />
+                <div>Todo App</div>
                 <div className="todoContainer">
                     <Add
                         addNewAct={this.handleAdd}
@@ -87,6 +90,8 @@ class TodoList extends React.Component {
                                             :
                                             <>
                                                 <div className="onEdit">
+                                                    <span>{index + 1}</span>
+                                                    <span> - </span>
                                                     <input type="text" value={this.state.editText === "" ? item.title : this.state.editText}
                                                         onChange={(event) => this.handleInput(event)}
                                                     ></input>
