@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
 import axios from "axios";
 import "./ListUser.css";
+import { useNavigate } from "react-router-dom"
 
 const ListUser = () => {
 
@@ -22,6 +23,12 @@ const ListUser = () => {
         fetchData();
     }, []);
 
+    const navigate = useNavigate();
+
+    const handleClick = (item) => {
+        navigate(`/user/${item.id}`);
+    }
+
     return (
         <div className="list-user-container">
             <div className="title">
@@ -31,7 +38,9 @@ const ListUser = () => {
                 {ListUser && ListUser.length > 0 &&
                     ListUser.map((item, index) => {
                         return (
-                            <div className="child" key={item.id}>
+                            <div className="child" key={item.id}
+                                onClick={() => handleClick(item)}
+                            >
                                 {index + 1} - {item.first_name} {item.last_name}
                             </div>
                         )
