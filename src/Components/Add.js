@@ -1,44 +1,38 @@
-import React from "react";
+import { React, useState } from "react";
 
-class Add extends React.Component {
-    state = {
-        newAct: ""
+const Add = ({ addNewAct }) => {
+    const [newAct, setNewAct] = useState("");
+
+    const handleInput = (event) => {
+        setNewAct(event.target.value);
     }
 
-    handleInput = (event) => {
-        this.setState({
-            newAct: event.target.value
-        })
-    }
-
-    handleClick = () => {
-        if (!this.state.newAct) {
+    const handleClick = () => {
+        if (!newAct) {
             alert("Mising Activity");
             return;
         }
-        let newAct = {
+        let newActivity = {
             id: Math.floor(Math.random() * 10000),
-            title: this.state.newAct,
+            title: newAct,
             onEdit: false
         }
-        this.props.addNewAct(newAct)
-        this.setState({
-            newAct: ""
-        })
+        addNewAct(newActivity);
+        setNewAct("");
     }
 
-    render() {
-        return (
-            <div className="todoAdd">
-                <input type="text" value={this.state.newAct}
-                    onChange={(event) => this.handleInput(event)}
-                />
-                <button type="button"
-                    onClick={() => this.handleClick()}
-                >Add</button>
-            </div>
-        )
-    }
+
+    return (
+        <div className="todoAdd">
+            <input type="text" value={newAct}
+                onChange={handleInput}
+            />
+            <button type="button"
+                onClick={handleClick}
+            >Add</button>
+        </div>
+    )
+
 }
 
 export default Add;

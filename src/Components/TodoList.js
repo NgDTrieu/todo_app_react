@@ -22,7 +22,7 @@ const TodoList = () => {
 
 
     const handleEdit = (obj) => {
-        if (this.state.editKey === true) {
+        if (editKey === true) {
             alert("Can't edit 2 act at the same time !");
             return;
         }
@@ -41,8 +41,6 @@ const TodoList = () => {
         setEditText(event.target.value);
     }
 
-
-
     const handleSaveEdit = (obj) => {
         setArrActs(prevState =>
             prevState.map(item =>
@@ -57,7 +55,7 @@ const TodoList = () => {
 
 
     return (
-        <>
+        <div>
             <img src={logo} className="App-logo" alt="logo" />
             <div>Todo App</div>
             <div className="todoContainer">
@@ -100,7 +98,7 @@ const TodoList = () => {
                     }
                 </div>
             </div>
-        </>
+        </div>
     )
 };
 
