@@ -1,12 +1,13 @@
 import React from "react";
-import logo from "../Images/logo.svg";
-
+import logo from "../images/logo.svg";
+import '../styles/App.css';
 const Home = () => {
     return (
-        <div>
+        <div className="flex flex-col justify-center">
             <img src={logo} className="App-logo" alt="logo" />
-            <div>Todo App</div>
+            <div className="text-3xl font-bold underline">Todo App</div>
             Welcome HomePage!
+
         </div>
     )
 }

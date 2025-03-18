@@ -1,5 +1,5 @@
 import About from "./About";
-import '../Styles/App.css';
+import '../styles/App.css';
 import TodoList from './TodoList';
 import Nav from './Nav';
 import {
@@ -8,8 +8,8 @@ import {
   Route
 } from "react-router-dom";
 import Home from './Home';
-import ListUser from "./Users/ListUser";
-import DetailUser from "./Users/DetailUser";
+import ListUser from "./users/ListUser";
+import DetailUser from "./users/DetailUser";
 
 function App() {
   return (
@@ -19,10 +19,10 @@ function App() {
           <Nav />
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/Todo" element={<TodoList />} />
-            <Route path="/About" element={<About />} />
-            <Route path="/User" element={<ListUser />} />
-            <Route path="/User/:id" element={<DetailUser />} />
+            <Route path="/todo" element={<TodoList />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/user" element={<ListUser />} />
+            <Route path="/user/:id" element={<DetailUser />} />
           </Routes>
         </header>
       </div>

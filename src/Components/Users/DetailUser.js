@@ -23,21 +23,25 @@ const DetailUser = () => {
     }
 
     return (
-        < div >
-            <div>
-                User ID: {user.id}
+        < div className="flex flex-col bg-gray-800 rounded-lg p-6 w-full">
+            <div className="flex flex-row ">
+                <div className="rounded-lg">
+                    <img className="rounded-lg" src={user.avatar} />
+                </div>
+                <div className="flex flex-col p-6 text-left text-2xl font-bold">
+                    <div>
+                        User ID: {user.id}
+                    </div>
+                    <div>
+                        User name: {user.first_name} {user.last_name}
+                    </div>
+                    <div>
+                        User Email: {user.email}
+                    </div>
+                </div>
             </div>
-            <div>
-                User name: {user.first_name} {user.last_name}
-            </div>
-            <div>
-                User Email: {user.email}
-            </div>
-            <div>
-                <img src={user.avatar} />
-            </div>
-            <div>
-                <button type="button"
+            <div >
+                <button className="font-semibold border-gray-500 border-2 rounded-lg m-2 px-2 hover:bg-gray-600" type="button"
                     onClick={handleBack}
                 >
                     Back

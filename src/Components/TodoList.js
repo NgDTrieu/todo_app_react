@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Add from "./Add.js"
-import logo from "../Images/logo.svg";
+import logo from "../images/logo.svg";
 
 const TodoList = () => {
     const [arrActs, setArrActs] = useState([
@@ -56,47 +56,62 @@ const TodoList = () => {
 
     return (
         <div>
-            <img src={logo} className="App-logo" alt="logo" />
-            <div>Todo App</div>
+            <div className="flex justify-center">
+                <img src={logo} className="App-logo center" alt="logo" />
+            </div>
+            <div className="font-bold">Todo App</div>
             <div className="todoContainer">
                 <Add
                     addNewAct={handleAdd}
                 />
-
-                <div className="List">
-                    {
-                        arrActs.map((item, index) => {
-                            return (
-                                <React.Fragment key={item.id}>
-                                    {item.onEdit === false ?
-                                        <div key={item.id}>
-                                            <span>{index + 1} - {item.title}</span> <></>
-                                            <button className="Edit"
-                                                onClick={() => handleEdit(item)}
-                                            >Edit</button> <></>
-                                            <button className="Delete"
-                                                onClick={() => handleDelete(item)}
-                                            >Delete</button>
-                                        </div>
-                                        :
-                                        <>
-                                            <div className="onEdit">
-                                                <span>{index + 1}</span>
-                                                <span> - </span>
-                                                <input type="text" value={editText === "" ? item.title : editText}
-                                                    onChange={(event) => handleInput(event)}
-                                                ></input>
-                                                <button type="button"
-                                                    onClick={() => handleSaveEdit(item)}
-                                                >Save</button>
-                                            </div>
-                                        </>
-                                    }
-                                </React.Fragment>
-                            )
-                        })
-                    }
+                <div className="flex flex-col items-center justify-center bg-gray-50 p-6 rounded-lg">
+                    {arrActs.map((item, index) => (
+                        <React.Fragment key={item.id}>
+                            {item.onEdit === false ? (
+                                <div
+                                    key={item.id}
+                                    className="flex items-center justify-between bg-white p-4 w-full rounded-lg shadow-sm mb-2 hover:bg-gray-200 transition"
+                                >
+                                    <span className="text-gray-700 font-medium">
+                                        {index + 1} - {item.title}
+                                    </span>
+                                    <div className="flex space-x-2">
+                                        <button
+                                            className="Edit px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600 transition duration-200"
+                                            onClick={() => handleEdit(item)}
+                                        >
+                                            Edit
+                                        </button>
+                                        <button
+                                            className="Delete px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition duration-200"
+                                            onClick={() => handleDelete(item)}
+                                        >
+                                            Delete
+                                        </button>
+                                    </div>
+                                </div>
+                            ) : (
+                                <div className="onEdit flex items-center justify-between bg-yellow-100 p-4 w-full max-w-2xl rounded-lg shadow-sm mb-2">
+                                    <span className="text-gray-700 font-medium">{index + 1} -</span>
+                                    <input
+                                        className="flex-1 ml-4 p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-700"
+                                        type="text"
+                                        value={editText === "" ? item.title : editText}
+                                        onChange={(event) => handleInput(event)}
+                                    />
+                                    <button
+                                        className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200 ml-2"
+                                        type="button"
+                                        onClick={() => handleSaveEdit(item)}
+                                    >
+                                        Save
+                                    </button>
+                                </div>
+                            )}
+                        </React.Fragment>
+                    ))}
                 </div>
+
             </div>
         </div>
     )

@@ -1,0 +1,29 @@
+
+body {
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+}
+.flex-container {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* background-color: rgb(186, 202, 218); */
+}
+  
+.flex-container > div {
+    height: 40px;
+    margin: 0 auto;
+    width: 400px;
+    border: 1px solid grey;
+    text-align: left;
+    padding: 10px;
+    
+}
+
+.flex-container > div:hover{
+    background-color: green;
+    cursor: pointer;
+}
+  
