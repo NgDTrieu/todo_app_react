@@ -15,7 +15,8 @@ const Add = ({ addNewAct }) => {
         let newActivity = {
             id: Math.floor(Math.random() * 10000),
             title: newAct,
-            onEdit: false
+            onEdit: false,
+            editText: ""
         }
         addNewAct(newActivity);
         setNewAct("");

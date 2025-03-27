@@ -9,12 +9,19 @@ const DetailUser = () => {
     const [user, setUser] = useState({});
 
     useEffect(() => {
+
         const fetchData = async () => {
-            let res = await axios.get(`https://reqres.in/api/users/${id}`);
-            setUser(res && res.data && res.data.data ? res.data.data : {});
+            try {
+                let res = await axios.get(`https://reqres.in/api/users/${id}`);
+                setUser(res && res.data && res.data.data ? res.data.data : {});
+            }
+            catch (error) {
+                console.error("Error fetching data: ", error);
+            }
         }
+
         fetchData();
-    }, []);
+    }, [id]);
 
     const navigate = useNavigate()
 
@@ -26,7 +33,7 @@ const DetailUser = () => {
         < div className="flex flex-col bg-gray-800 rounded-lg p-6 w-full">
             <div className="flex flex-row ">
                 <div className="rounded-lg">
-                    <img className="rounded-lg" src={user.avatar} />
+                    <img className="rounded-lg" src={user.avatar} alt="avatar of user" />
                 </div>
                 <div className="flex flex-col p-6 text-left text-2xl font-bold">
                     <div>

@@ -4,12 +4,11 @@ import logo from "../images/logo.svg";
 
 const TodoList = () => {
     const [arrActs, setArrActs] = useState([
-        { id: "1", title: "Playing Game", onEdit: false },
-        { id: "2", title: "Reading book", onEdit: false },
-        { id: "3", title: "Playing Guitar", onEdit: false }
+        { id: "1", title: "Playing Game", onEdit: false, editText: "" },
+        { id: "2", title: "Reading book", onEdit: false, editText: "" },
+        { id: "3", title: "Playing Guitar", onEdit: false, editText: "" }
     ]);
 
-    const [editText, setEditText] = useState("");
     const [editKey, setEditKey] = useState(false);
 
     const handleAdd = (newAct) => {
@@ -26,30 +25,34 @@ const TodoList = () => {
             alert("Can't edit 2 act at the same time !");
             return;
         }
-        setArrActs(prevState =>
-            prevState.map(item =>
-                item.id === obj.id
-                    ? { ...item, onEdit: !item.onEdit }
-                    : item
-            )
+        setArrActs(arrActs.map(item =>
+            item.id === obj.id
+                ? { ...item, onEdit: !item.onEdit, editText: item.title }
+                : item
+        )
         );
-
         setEditKey(true);
     }
 
-    const handleInput = (event) => {
-        setEditText(event.target.value);
+    const handleInput = (event, obj) => {
+        setArrActs(arrActs.map(item =>
+            item.id === obj.id
+                ? { ...item, editText: event.target.value }
+                : item
+        ));
     }
 
     const handleSaveEdit = (obj) => {
-        setArrActs(prevState =>
-            prevState.map(item =>
-                item.id === obj.id
-                    ? { id: item.id, title: editText === "" ? item.title : editText, onEdit: false }
-                    : item
-            )
+        if (obj.editText === "") {
+            alert("Missing activity!!!");
+            return;
+        }
+        setArrActs(arrActs.map(item =>
+            item.id === obj.id
+                ? { id: item.id, title: item.editText, onEdit: false, editText: "" }
+                : item
+        )
         );
-        setEditText("");
         setEditKey(false);
     };
 
@@ -96,8 +99,8 @@ const TodoList = () => {
                                     <input
                                         className="flex-1 ml-4 p-2 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 text-gray-700"
                                         type="text"
-                                        value={editText === "" ? item.title : editText}
-                                        onChange={(event) => handleInput(event)}
+                                        value={item.editText}
+                                        onChange={(event) => handleInput(event, item)}
                                     />
                                     <button
                                         className="px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 transition duration-200 ml-2"

@@ -12,7 +12,7 @@ const ListUser = () => {
         const fetchData = async () => {
             try {
                 let res = await axios.get("https://reqres.in/api/users?page=1");
-                //console.log(">>> check res: ", res.data.data);
+                console.log(">>> check res: ", res);
 
                 // Cập nhật state
                 setListUser(res && res.data && res.data.data ? res.data.data : []);
@@ -41,12 +41,11 @@ const ListUser = () => {
                         <div
                             className="child flex justify-between items-center w-full bg-gray-100 hover:bg-gray-200 rounded-lg p-3 mb-2 transition duration-200"
                             key={item.id}
-                            onClick={() => handleClick(item)}
                         >
                             <span className="font-medium text-gray-600">
                                 {index + 1}. {item.first_name} {item.last_name}
                             </span>
-                            <button className="px-3 py-1 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600">
+                            <button className="px-3 py-1 text-sm bg-blue-500 text-white rounded-lg hover:bg-blue-600" onClick={() => handleClick(item)}>
                                 Details
                             </button>
                         </div>
